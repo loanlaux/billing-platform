@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import Router, { Link, RouteHandler } from 'react-router';
-import AppBar from "material-ui/AppBar";
 import { Card, CardHeader, CardText, CardActions } from "material-ui/Card";
 import FlatButton from 'material-ui/FlatButton';
 import CardAmount from "./CardAmount";
@@ -22,7 +21,6 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <AppBar title="Invoices" />
         <div className="container">
           {invoices.map((invoice) => (
             <Card className="card" key={invoice._id}>
