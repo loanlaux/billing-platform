@@ -9,7 +9,7 @@ import CardAmount from "./CardAmount";
 // components
 
 export default class App extends Component {
-  propTypes = {
+  static propTypes = {
     invoices: PropTypes.array
   };
 
@@ -25,7 +25,7 @@ export default class App extends Component {
         <AppBar />
         <div className="container">
           {invoices.map((invoice) => (
-            <Card className="card">
+            <Card className="card" key={invoice._id}>
               <CardAmount
                 amount={invoice.amount}
                 paid={invoice.paid}

@@ -25,7 +25,7 @@ module.exports.routes = {
   // NOTE all routes defined before the 'GET /*' will override
   'GET /api/invoices': {
     controller: 'InvoiceController',
-    action: 'get'
+    action: 'getAll'
   },
 
   // All GET requests are directed to the app controller which renders our app.
