@@ -22,7 +22,7 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <AppBar />
+        <AppBar title="Invoices" />
         <div className="container">
           {invoices.map((invoice) => (
             <Card className="card" key={invoice._id}>
