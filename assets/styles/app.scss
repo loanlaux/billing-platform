@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+@import "./card.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  padding: 20px 10px 0 10px;
+}

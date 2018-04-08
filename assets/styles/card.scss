@@ -1,0 +1,26 @@
+.card {
+  margin: 1rem auto;
+}
+
+.card-amount {
+  &.unpaid {
+    background: #DB4437;
+  }
+
+  &.paid {
+    background: #009688;
+  }
+  .amount {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .status {
+    font-weight: 300;
+  }
+
+  padding: 1.4rem 1rem;
+
+  color: white;
+}
