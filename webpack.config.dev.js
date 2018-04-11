@@ -5,35 +5,39 @@ const webpack = require('webpack');
 const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
+  mode: 'development',
+
   target: 'web',
 
   devtool: 'cheap-module-eval-source-map',
+
+  devServer: {
+    hot: true,
+  },
 
   entry: [
     'babel-polyfill',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server',
-    './assets/main.jsx',
+    path.resolve(__dirname, 'assets/main.jsx'),
   ],
 
   output: {
-    path: path.join(__dirname, '/public/dist/'),
+    path: path.join(__dirname, 'public/dist/'),
     filename: 'bundle.js',
-    pathInfo: true,
+    pathinfo: true,
     publicPath: 'http://localhost:8080/dist/',
-    hot: true,
   },
 
   resolve: {
-    root: path.join(__dirname, ''),
-    modulesDirectories: [
+    modules: [
       'web_modules',
       'node_modules',
-      'assets',
-      'assets/components',
-      'assets/styles',
+      path.resolve(__dirname, 'assets'),
+      path.resolve(__dirname, 'assets/components'),
+      path.resolve(__dirname, 'assets/styles'),
     ],
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx'],
   },
 
   plugins: [
@@ -44,10 +48,10 @@ module.exports = {
   ],
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/, // sass files
-        loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded',
+        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded',
       },
       {
         test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
@@ -56,8 +60,14 @@ module.exports = {
       {
         test: /\.jsx?$/, // react files
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
         include: path.join(__dirname, 'assets'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'stage-0', 'react'],
+            plugins: [require('babel-plugin-react-html-attrs'), require('@babel/plugin-transform-runtime')]
+          }
+        }
       },
     ],
 
